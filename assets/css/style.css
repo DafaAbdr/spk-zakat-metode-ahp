@@ -1,0 +1,99 @@
+/* ================= SPK Zakat - Masjid Nurul Ikhsan ================= */
+
+body {
+    background-image:
+        radial-gradient(circle at 10% 10%, rgba(13,107,79,0.05) 0, transparent 40%),
+        radial-gradient(circle at 90% 20%, rgba(201,162,39,0.08) 0, transparent 40%);
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #aee6cd; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #78d1ac; }
+
+.pola-masjid {
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0 2px, transparent 2px 14px);
+}
+
+.kubah-deco {
+    position: relative;
+}
+.kubah-deco::before {
+    content: '';
+    position: absolute;
+    top: -14px; left: 50%;
+    transform: translateX(-50%);
+    width: 26px; height: 26px;
+    background: radial-gradient(circle at 30% 30%, #f4de8d, #c9a227);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+table.tabel-modern th {
+    background: linear-gradient(135deg, #0d6b4f, #0a5540);
+}
+
+/* ================= Sidebar: posisi tetap (fixed) + mode collapse ================= */
+/* fixed (bukan sticky) memastikan sidebar TIDAK IKUT SCROLL walau konten di kanan
+   sangat panjang (misal tabel ratusan baris data pemohon). */
+#sidebar { width: 18rem; }
+#mainWrapper { transition: margin-left .2s ease; }
+
+@media (min-width: 768px) {
+    #mainWrapper { margin-left: 18rem; }
+    #sidebar.collapsed + #mainWrapper,
+    #sidebar.collapsed ~ #mainWrapper { margin-left: 5rem; }
+}
+
+#sidebar.collapsed { width: 5rem; }
+#sidebar.collapsed .nav-label,
+#sidebar.collapsed .brand-text,
+#sidebar.collapsed .section-label { display: none !important; }
+#sidebar.collapsed nav a { justify-content: center; }
+#sidebar.collapsed .logo-row { justify-content: center; }
+#sidebar.collapsed #iconCollapse { transform: rotate(180deg); }
+#sidebar nav { overflow-y: visible; }
+
+/* Elemen khusus dokumen cetak: kop surat & tanda tangan HANYA tampil saat mencetak,
+   tidak ditampilkan di layar website (yang hanya menampilkan judul & data). */
+.print-only { display: none; }
+
+/* Cetak laporan */
+@media print {
+    .no-print { display: none !important; }
+    .print-only { display: block !important; }
+    body { background: white !important; }
+    main { padding: 0 !important; }
+    .print-area { box-shadow: none !important; border: none !important; padding: 0 !important; }
+    .laporan-formal { font-size: 12px; }
+}
+
+/* Dokumen laporan formal */
+.laporan-formal table.tabel-formal { border-collapse: collapse; }
+.laporan-formal table.tabel-formal th,
+.laporan-formal table.tabel-formal td {
+    border: 1px solid #1f2937;
+    padding: 6px 10px;
+}
+.laporan-formal table.tabel-formal th {
+    background: #f3f4f6 !important;
+    color: #111827 !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+}
+.laporan-formal table.tabel-padat th,
+.laporan-formal table.tabel-padat td {
+    padding: 4px 5px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+.laporan-formal table.tabel-padat th {
+    font-size: 9px;
+}
+.laporan-formal { color: #111827; }
+.laporan-formal h1, .laporan-formal h2, .laporan-formal h3 { color: #111827; }
+
+.fade-in { animation: fadeIn .35s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px);} to { opacity: 1; transform: translateY(0);} }
